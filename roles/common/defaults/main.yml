@@ -35,8 +35,8 @@ nagios_allowed_hosts: "127.0.0.1"
 
 # Override in roles/common/vars/os_version.yml
 nrpe_selinux_packages:
-  - libsemanage-python
-  - policycoreutils-python
+  - python3-libsemanage
+  - policycoreutils-python-utils
 
 # Is this a containerized node?
 containerized_node: false
