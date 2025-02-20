@@ -45,7 +45,7 @@
 
 ## See https://github.com/ceph/ceph-ansible/issues/759#issue-153248281
 - name: Zap all non-root disks
-  shell: "sgdisk --zap-all /dev/{{ item.key }} || sgdisk --zap-all /dev/{{ item.key }}"
+  shell: "sgdisk --zap-all /dev/{{ item }} || sgdisk --zap-all /dev/{{ item }}"
   with_items: "{{ non_root_partitions.stdout_lines }}"
   # with_dict: "{{ ansible_devices }}"
   # when:
@@ -57,7 +57,7 @@
 ## See https://tracker.ceph.com/issues/22354 and
 ## https://github.com/ceph/ceph/pull/20400
 - name: Blow away lingering OSD data and FSIDs
-  shell: "dd if=/dev/zero of=/dev/{{ item.key }} bs=1M count=110"
+  shell: "dd if=/dev/zero of=/dev/{{ item }} bs=1M count=110"
   with_items: "{{ non_root_partitions.stdout_lines }}"
   # with_dict: "{{ ansible_devices }}"
   # when:
