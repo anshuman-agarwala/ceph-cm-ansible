@@ -46,31 +46,33 @@
 ## See https://github.com/ceph/ceph-ansible/issues/759#issue-153248281
 - name: Zap all non-root disks
   shell: "sgdisk --zap-all /dev/{{ item.key }} || sgdisk --zap-all /dev/{{ item.key }}"
-  with_dict: "{{ ansible_devices }}"
-  when:
-    - item.key not in root_disk
-    - '"loop" not in item.key'
-    - '"ram" not in item.key'
-    - '"sr" not in item.key'
+  with_items: "{{ non_root_partitions.stdout_lines }}"
+  # with_dict: "{{ ansible_devices }}"
+  # when:
+  #   - item.key not in root_disk
+  #   - '"loop" not in item.key'
+  #   - '"ram" not in item.key'
+  #   - '"sr" not in item.key'
 
 ## See https://tracker.ceph.com/issues/22354 and
 ## https://github.com/ceph/ceph/pull/20400
 - name: Blow away lingering OSD data and FSIDs
   shell: "dd if=/dev/zero of=/dev/{{ item.key }} bs=1M count=110"
-  with_dict: "{{ ansible_devices }}"
-  when:
-    - item.key not in root_disk
-    - '"loop" not in item.key'
-    - '"ram" not in item.key'
-    - '"sr" not in item.key'
+  with_items: "{{ non_root_partitions.stdout_lines }}"
+  # with_dict: "{{ ansible_devices }}"
+  # when:
+  #   - item.key not in root_disk
+  #   - '"loop" not in item.key'
+  #   - '"ram" not in item.key'
+  #   - '"sr" not in item.key'
 
-- name: Remove all LVM data
-  shell: "dmsetup remove_all --force"
-  register: removed_lvm_data
-  until: "'Unable to remove' not in removed_lvm_data.stderr"
-  retries: 5
-  delay: 1
-  ignore_errors: true
+# - name: Remove all LVM data
+#   shell: "dmsetup remove_all --force"
+#   register: removed_lvm_data
+#   until: "'Unable to remove' not in removed_lvm_data.stderr"
+#   retries: 5
+#   delay: 1
+#   ignore_errors: true
 
 ## See http://tracker.ceph.com/issues/21989
 - name: Check for physical volumes
