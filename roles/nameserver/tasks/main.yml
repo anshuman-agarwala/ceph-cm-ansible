@@ -13,9 +13,9 @@
   tags:
     - packages
 
-- name: Enable and start ntpd
+- name: Enable and start chronyd
   service:
-    name: ntpd
+    name: chronyd
     state: started
     enabled: yes
   tags:
