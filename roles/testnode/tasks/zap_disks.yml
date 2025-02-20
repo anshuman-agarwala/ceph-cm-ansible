@@ -24,7 +24,7 @@
 
 - name: Compile list of non-root partitions
   # shell: "lsblk --list --noheadings | grep part | grep -v {{ root_disk|regex_replace('/dev/', '') }} | awk '{ print $1 }'"
-  shell: "echo /dev/sdq"
+  shell: "echo sdq"
   register: non_root_partitions
 
 - name: Unmount any non-root mountpoints
