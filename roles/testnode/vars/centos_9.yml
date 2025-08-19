@@ -54,10 +54,10 @@ packages:
   # for cram tests
 #  - python3-virtualenv
   # for rbd qemu tests
-  - genisoimage
-  - qemu-img
-  - qemu-kvm-core
-  - qemu-kvm-block-rbd
+  # - genisoimage
+  # - qemu-img
+  # - qemu-kvm-core
+  # - qemu-kvm-block-rbd
   # for pjd tests
   - libacl-devel
   # for fs tests,

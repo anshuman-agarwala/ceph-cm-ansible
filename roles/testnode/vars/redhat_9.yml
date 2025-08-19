@@ -34,10 +34,10 @@ packages:
   - gcc
   - git
   - make
-  - genisoimage
-  - qemu-img
-  - qemu-kvm-core
-  - qemu-kvm-block-rbd
+  # - genisoimage
+  # - qemu-img
+  # - qemu-kvm-core
+  # - qemu-kvm-block-rbd
   - libacl-devel
   - autoconf
   - gdb
