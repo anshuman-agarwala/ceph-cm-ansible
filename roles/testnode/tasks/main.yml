@@ -85,10 +85,10 @@
   tags:
     - partition
 
-- name: set up LVM
-  import_tasks: lvm.yml
-  tags:
-    - lvm
+# - name: set up LVM
+#   import_tasks: lvm.yml
+#   tags:
+#     - lvm
 
 - name: set up filesystems
   import_tasks: filesystems.yml
