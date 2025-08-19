@@ -29,6 +29,9 @@
   tags:
     - ssh
 
+- name: ensure pip
+  shell: python -m ensurepip
+
 - name: configure things specific to yum systems
   import_tasks: yum_systems.yml
   when: ansible_os_family == "RedHat"
