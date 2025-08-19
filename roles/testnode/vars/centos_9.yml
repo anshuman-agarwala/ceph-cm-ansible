@@ -64,7 +64,7 @@ packages:
   - autoconf
   # for test-crash.sh
   - gdb
-  - iozone
+  # - iozone
 
 epel_packages:
   - dbench
