@@ -27,26 +27,26 @@
   shell: "echo sdq"
   register: non_root_partitions
 
-- name: Unmount any non-root mountpoints
-  mount:
-    path: "{{ item.mount }}"
-    state: unmounted
-  with_items: "{{ ansible_mounts }}"
-  when:
-    - item.mount != '/' and
-      not item.mount is match("/(boot|home|opt|root|srv|tmp|usr/local|var|.snapshots)")
+# - name: Unmount any non-root mountpoints
+#   mount:
+#     path: "{{ item.mount }}"
+#     state: unmounted
+#   with_items: "{{ ansible_mounts }}"
+#   when:
+#     - item.mount != '/' and
+#       not item.mount is match("/(boot|home|opt|root|srv|tmp|usr/local|var|.snapshots)")
 
 ## http://tracker.ceph.com/issues/20533
 ## Trusty version of wipefs lacks --force option
-- name: Wipe filesystems on non-root partitions
-  shell: "wipefs --force --all /dev/{{ item }} || wipefs --all /dev/{{ item }}"
-  with_items: "{{ non_root_partitions.stdout_lines }}"
-  when: non_root_partitions|length > 0
+# - name: Wipe filesystems on non-root partitions
+#   shell: "wipefs --force --all /dev/{{ item }} || wipefs --all /dev/{{ item }}"
+#   with_items: "{{ non_root_partitions.stdout_lines }}"
+#   when: non_root_partitions|length > 0
 
-## See https://github.com/ceph/ceph-ansible/issues/759#issue-153248281
-- name: Zap all non-root disks
-  shell: "sgdisk --zap-all /dev/{{ item }} || sgdisk --zap-all /dev/{{ item }}"
-  with_items: "{{ non_root_partitions.stdout_lines }}"
+# ## See https://github.com/ceph/ceph-ansible/issues/759#issue-153248281
+# - name: Zap all non-root disks
+#   shell: "sgdisk --zap-all /dev/{{ item }} || sgdisk --zap-all /dev/{{ item }}"
+#   with_items: "{{ non_root_partitions.stdout_lines }}"
   # with_dict: "{{ ansible_devices }}"
   # when:
   #   - item.key not in root_disk
@@ -56,9 +56,9 @@
 
 ## See https://tracker.ceph.com/issues/22354 and
 ## https://github.com/ceph/ceph/pull/20400
-- name: Blow away lingering OSD data and FSIDs
-  shell: "dd if=/dev/zero of=/dev/{{ item }} bs=1M count=110"
-  with_items: "{{ non_root_partitions.stdout_lines }}"
+# - name: Blow away lingering OSD data and FSIDs
+#   shell: "dd if=/dev/zero of=/dev/{{ item }} bs=1M count=110"
+#   with_items: "{{ non_root_partitions.stdout_lines }}"
   # with_dict: "{{ ansible_devices }}"
   # when:
   #   - item.key not in root_disk
