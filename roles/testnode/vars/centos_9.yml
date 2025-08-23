@@ -42,7 +42,9 @@ packages:
   - usbredir
 #  - libev-devel
   - valgrind
+  # for ppc64le
   - nfs-utils
+  - linux-firmware
   # for xfstests
   - ncurses-devel
   # for s3 tests
