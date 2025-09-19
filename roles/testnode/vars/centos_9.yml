@@ -45,6 +45,7 @@ packages:
   # for ppc64le
   - nfs-utils
   - linux-firmware
+  - bzip2
   # for xfstests
   - ncurses-devel
   # for s3 tests
