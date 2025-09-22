@@ -46,6 +46,7 @@ packages:
   - nfs-utils
   - linux-firmware
   - bzip2
+  - perl
   # for xfstests
   - ncurses-devel
   # for s3 tests
