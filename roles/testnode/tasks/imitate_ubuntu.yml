@@ -20,3 +20,30 @@
     src: /usr/bin/fsstress
     dest: /usr/lib/ltp/testcases/bin/fsstress
     force: yes
+
+# iozone install tasks
+- name: Download tar file
+  get_url:
+    url: "https://www.iozone.org/src/current/iozone3_508.tar"
+    dest: "/tmp/iozone.tar"
+
+- name: Extract tar file
+  unarchive:
+    src: "/tmp/iozone.tar"
+    dest: "/tmp/"
+    remote_src: yes
+
+- name: Change to the extracted directory and run make
+  command: "make linuxpowerpc64"
+  args:
+    chdir: "/tmp/iozone"
+
+- name: Copy output to a directory in PATH
+  command: cp /tmp/iozone/iozone /usr/local/bin/
+  args:
+    removes: "/usr/local/bin/output"
+
+- name: Change permissions of the binary
+  file:
+    path: "/usr/local/bin/iozone"
+    mode: '0755'
