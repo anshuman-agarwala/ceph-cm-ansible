@@ -36,7 +36,7 @@
 - name: Change to the extracted directory and run make
   command: "make linuxpowerpc64"
   args:
-    chdir: "/tmp/iozone"
+    chdir: "/tmp/iozone3_508"
 
 - name: Copy output to a directory in PATH
   command: cp /tmp/iozone/iozone /usr/local/bin/
