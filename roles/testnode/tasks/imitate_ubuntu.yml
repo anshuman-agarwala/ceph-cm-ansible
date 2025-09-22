@@ -34,7 +34,7 @@
     remote_src: yes
 
 - name: Change to the extracted directory and run make
-  command: "make linuxpowerpc64"
+  command: "make linux-powerpc64"
   args:
     chdir: "/tmp/iozone3_508/src/current"
 
