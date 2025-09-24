@@ -39,9 +39,7 @@
     chdir: "/tmp/iozone3_508/src/current"
 
 - name: Copy output to a directory in PATH
-  command: cp /tmp/iozone/iozone /usr/local/bin/
-  args:
-    removes: "/usr/local/bin/output"
+  command: cp /tmp/iozone3_508/src/current/iozone /usr/local/bin/
 
 - name: Change permissions of the binary
   file:
